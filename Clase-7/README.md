@@ -64,14 +64,19 @@ class Rectangle:
         return 2*(self.width) + 2*(self.height)
 
     def compute_interference_point(self, point):
-        """ This fuction determinate if a point is inside the rectangle or not. For this, the maximum and minimum values of x and y that a point can have to be inside the rectangle are calculated.
+        """ This fuction determinate if a point is inside the rectangle or not. 
+        For this, the maximum and minimum values of x and y 
+        that a point can have to be inside the rectangle are calculated.
         """
         Min_x = self.center_point.x - (self.width/2)
         Max_x = self.center_point.x + (self.width/2)
         Min_y = self.center_point.y - (self.height/2)
         Max_y = self.center_point.y + (self.height/2)
 
-        """ If the given point has coordinates x and y that are within the calculated maximum and minimum values, then the point is inside the rectangle and the function returns True. Otherwise, it returns False.
+        """ If the given point has coordinates x and y that are within 
+        the calculated maximum and minimum values, then the point is inside
+        the rectangle and the function returns True. 
+        Otherwise, it returns False.
         """
         if ( Max_x >= point.x >= Min_x and Max_y >= point.y >= Min_y):
             return True
@@ -79,8 +84,10 @@ class Rectangle:
             return False
 
     def compute_interference_line(self, line: Line):
-        """ Uses the compute_interference_point function to determine if any of the points of the line segment are inside the rectangle. If at least one point is inside, then the line segment interferes with the rectangle and the function returns True. Otherwise, it returns False.
-        """
+        """Use the compute_interference_point function to determine
+        if at least one point is inside the rectangle.
+        If so, the line segment interferes with the rectangle, 
+        and the function returns True. Otherwise, it returns False."""
         is_a_point_inside = self.compute_interference_point(line.point_A)
         is_b_point_inside = self.compute_interference_point(line.point_B)
         if is_a_point_inside or is_b_point_inside:
@@ -91,7 +98,9 @@ class Rectangle:
 
 
 class Square(Rectangle):
-    """ In this class, inheritance is used from the Rectangle class in the initialization and area and perimeter calculation functions. Additionally, in the case of width and height, the same value is assigned to both in side_length, since a square has equal sides.
+    """ In this class, inheritance is used from the Rectangle class in the initialization,
+    area and perimeter calculation functions. Additionally, in the case of width and height,
+    the same value is assigned to both in side_length, since a square has equal sides.
     """
     def __init__(self, side_length: float, center_point):
         super().__init__(center_point = center_point, height = side_length, width = side_length)
