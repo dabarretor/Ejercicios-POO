@@ -1,5 +1,7 @@
 # Ejercicio-1-de-la-clase-6-Clases-y-Objetos
+
 Hecho en mermaid:
+
 ```mermaid
 classDiagram
     class Person {
@@ -11,6 +13,7 @@ classDiagram
     }
 ```
 El codigo de python quedo lo siguiente:
+
 ```python
 class Person:
    # Class attribute
@@ -26,4 +29,5 @@ class Person:
       # Comparate the age of the a person with another person
       return self.age > other_person.age
 ```
+
 Volver al README principal: [README_principal](../README.md)
