@@ -104,6 +104,7 @@ class Square(Rectangle):
     """
     def __init__(self, side_length: float, center_point):
         super().__init__(center_point = center_point, height = side_length, width = side_length)
+#falta los metodos
 
 ```
 
