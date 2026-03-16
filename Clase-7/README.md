@@ -47,15 +47,33 @@ class Point:
         self.y = y
 
 class Line:
-    def __init__(self, point_A, point_B):
+    def __init__(self, point_A: Point, point_B: Point):
         self.point_A = point_A
         self.point_B = point_B
 
 class Rectangle:
-    def __init__(self, width: float, height: float, center_point):
+    def __init__(self, width: float, height: float, center_point: Point):
         self.width = width
         self.height = height
         self.center_point = center_point
+
+    @classmethod
+    def method_1(cls, width: float, height: float, bottom_left_corner: Point):
+        center_x = bottom_left_corner.x + (width/2) # The center is sought at x.
+        center_y = bottom_left_corner.y + (height/2) # The center is sought in y.
+        return cls(width, height, Point(center_x, center_y))
+    
+    @classmethod
+    def method_2(cls, width: float, height: float, center_point: Point):
+        return cls(width, height, center_point)
+    
+    @classmethod
+    def method_3(cls, point1: Point, point2: Point):
+        width = abs(point2.x - point1.x)
+        height = abs(point2.y - point1.y)
+        center_x = (point1.x + point2.x)/2
+        center_y = (point1.y + point2.y)/2
+        return cls(width, height, Point(center_x, center_y))
 
     def compute_area(self):
         return self.width * self.height
@@ -63,15 +81,15 @@ class Rectangle:
     def compute_perimeter(self):
         return 2*(self.width) + 2*(self.height)
 
-    def compute_interference_point(self, point):
+    def compute_interference_point(self, point: Point):
         """ This fuction determinate if a point is inside the rectangle or not. 
         For this, the maximum and minimum values of x and y 
         that a point can have to be inside the rectangle are calculated.
         """
-        Min_x = self.center_point.x - (self.width/2)
-        Max_x = self.center_point.x + (self.width/2)
-        Min_y = self.center_point.y - (self.height/2)
-        Max_y = self.center_point.y + (self.height/2)
+        Min_x = self.center_point.x - (self.width/2) # Represents the entire left edge.
+        Max_x = self.center_point.x + (self.width/2) # Represents the entire right edge.
+        Min_y = self.center_point.y - (self.height/2) # Represents the entire bottom edge.
+        Max_y = self.center_point.y + (self.height/2) # Represents the entire top edge.
 
         """ If the given point has coordinates x and y that are within 
         the calculated maximum and minimum values, then the point is inside
@@ -95,16 +113,16 @@ class Rectangle:
         else:
             return False
 
-
-
 class Square(Rectangle):
-    """ In this class, inheritance is used from the Rectangle class in the initialization,
-    area and perimeter calculation functions. Additionally, in the case of width and height,
-    the same value is assigned to both in side_length, since a square has equal sides.
+    """ In this class, inheritance is used from the Rectangle class
+    in the initialization, area and perimeter calculation functions.
+    Additionally, in the case of width and height, the same value
+    is assigned to both in side_length, since a square has equal sides.
     """
-    def __init__(self, side_length: float, center_point):
-        super().__init__(center_point = center_point, height = side_length, width = side_length)
-#falta los metodos
+    def __init__(self, side_length: float, center_point: Point):
+        super().__init__(center_point = center_point, 
+        height = side_length, width = side_length)
+
 
 ```
 
